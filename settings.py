@@ -57,7 +57,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
+    'ckeditor_uploader',
+    'common',
+    'filter',
     'apps.user',
+    'apps.sku',
 ]
 
 MIDDLEWARE = [
@@ -75,15 +80,21 @@ ROOT_URLCONF = 'urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
+                'common.context_processors.setting',
                 'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
+            'debug': 'DEBUG',
         },
     },
 ]
@@ -132,6 +143,27 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline', 'Strikethrough', 'Subscript', 'Superscript', '-'],
+            ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-'],
+            ['Undo', 'Redo', 'NumberedList', 'BulletedList', '-'],
+            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', 'Link', 'Unlink', '-'],
+            ['Templates', '-'],
+            ['Image', 'Flash', 'Table', '-', ],
+            ['Styles', 'Format', 'Font', 'Size', '-', ],
+            ['Text Color', '-'],
+            ['Maximize']
+        ],
+        'height': 391,
+        'width': '100%',
+        'language': 'zh-cn',
+        'tabSpaces': 4,
+    },
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -147,6 +179,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
+DOMAIN_URL = 'http://127.0.0.1:8000'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/classic/')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/upload/')
 STATIC_URL = '/static/'
