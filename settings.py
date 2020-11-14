@@ -26,6 +26,8 @@ SECRET_KEY = 'l-_e!(dn76f$16i_&(*(j6#dl7e6)fmyt+^(p(jv233mzh3%ar'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+RUN_ENV = os.getenv('RUN_ENV', default='dev')
+
 ALLOWED_HOSTS = []
 
 pymysql.version_info = (1, 4, 6, 'final', 0,)
@@ -101,24 +103,33 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'wsgi.application'
 
+DEFAULT_NAME = 'competition'
+DEFAULT_USER = 'root'
+DEFAULT_PASSWORD = '123456'
+DEFAULT_HOST = '127.0.0.1'
+SLAVE_NAME = 'ms_micro'
+SLAVE_USER = 'root'
+SLAVE_PASSWORD = '123456'
+SLAVE_HOST = '127.0.0.1'
+
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'competition',
-        'USER': 'root',
-        'PASSWORD': '123456',
-        'HOST': '127.0.0.1',
+        'NAME': DEFAULT_NAME,
+        'USER': DEFAULT_USER,
+        'PASSWORD': DEFAULT_PASSWORD,
+        'HOST': DEFAULT_HOST,
         'PORT': '3306',
     },
     'slave': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'micro_pupilary',
-        'USER': 'root',
-        'PASSWORD': '123456',
-        'HOST': '127.0.0.1',
+        'NAME': SLAVE_NAME,
+        'USER': SLAVE_USER,
+        'PASSWORD': SLAVE_PASSWORD,
+        'HOST': SLAVE_HOST,
         'PORT': '3306',
     }
 }
