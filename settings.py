@@ -23,12 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'l-_e!(dn76f$16i_&(*(j6#dl7e6)fmyt+^(p(jv233mzh3%ar'
 
+RUN_ENV = os.getenv('RUN_ENV', default='development')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = RUN_ENV != 'development'
 
-RUN_ENV = os.getenv('RUN_ENV', default='dev')
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*', ]
 
 pymysql.version_info = (1, 4, 6, 'final', 0,)
 pymysql.install_as_MySQLdb()
@@ -103,14 +102,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'wsgi.application'
 
-DEFAULT_NAME = 'competition'
-DEFAULT_USER = 'root'
-DEFAULT_PASSWORD = '123456'
-DEFAULT_HOST = '127.0.0.1'
-SLAVE_NAME = 'ms_micro'
-SLAVE_USER = 'root'
-SLAVE_PASSWORD = '123456'
-SLAVE_HOST = '127.0.0.1'
+DEFAULT_NAME = os.getenv('DEFAULT_NAME', default='competition')
+DEFAULT_USER = os.getenv('DEFAULT_USER', default='root')
+DEFAULT_PASSWORD = os.getenv('DEFAULT_PASSWORD', default='123456')
+DEFAULT_HOST = os.getenv('DEFAULT_HOST', default='127.0.0.1')
+SLAVE_NAME = os.getenv('SLAVE_NAME', default='ms_micro')
+SLAVE_USER = os.getenv('SLAVE_USER', default='root')
+SLAVE_PASSWORD = os.getenv('SLAVE_PASSWORD', default='123456')
+SLAVE_HOST = os.getenv('SLAVE_HOST', default='127.0.0.1')
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -190,10 +189,26 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-DOMAIN_URL = 'http://127.0.0.1:8000'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/classic/')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/upload/')
-STATIC_URL = '/static/'
-MEDIA_URL = '/upload/'
+DOMAIN_URL = os.getenv('DOMAIN_URL', default='http://127.0.0.1:8000')
+STATIC_ROOT = os.getenv('STATIC_ROOT', default=os.path.join(BASE_DIR, 'static/classic/'))
+MEDIA_ROOT = os.getenv('MEDIA_ROOT', default=os.path.join(BASE_DIR, 'static/upload/'))
+STATIC_URL = os.getenv('STATIC_URL', default='/static/')
+MEDIA_URL = os.getenv('MEDIA_URL', default='/upload/')
 CKEDITOR_UPLOAD_PATH = 'upload/'
 CKEDITOR_IMAGE_BACKEND = 'pillow'
+# if DEBUG:
+#     DOMAIN_URL = 'http://127.0.0.1:8000'
+#     STATIC_ROOT = os.path.join(BASE_DIR, 'static/classic/')
+#     MEDIA_ROOT = os.path.join(BASE_DIR, 'static/upload/')
+#     STATIC_URL = '/static/'
+#     MEDIA_URL = '/upload/'
+#     CKEDITOR_UPLOAD_PATH = 'upload/'
+#     CKEDITOR_IMAGE_BACKEND = 'pillow'
+# else:
+#     DOMAIN_URL = os.getenv('DOMAIN_URL')
+#     STATIC_ROOT = os.path.join(BASE_DIR, 'static/classic/')
+#     MEDIA_ROOT = os.path.join(BASE_DIR, 'static/upload/')
+#     STATIC_URL = '/static/'
+#     MEDIA_URL = '/upload/'
+#     CKEDITOR_UPLOAD_PATH = 'upload/'
+#     CKEDITOR_IMAGE_BACKEND = 'pillow'
