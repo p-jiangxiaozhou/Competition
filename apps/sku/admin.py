@@ -1,5 +1,14 @@
 from django.contrib import admin
-from .models import Category, Goods, GoodsPic
+from .models import Brand, Category, Goods, GoodsPic
+
+
+@admin.register(Brand)
+class BrandAdmin(admin.ModelAdmin):
+    list_per_page = 20
+    model = Brand
+    search_fields = ['name']
+    list_display = ('name', 'url', 'is_active', 'create_time', 'update_time',)
+    exclude = ['create_time', 'update_time', ]
 
 
 @admin.register(Category)

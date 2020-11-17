@@ -25,7 +25,7 @@ SECRET_KEY = 'l-_e!(dn76f$16i_&(*(j6#dl7e6)fmyt+^(p(jv233mzh3%ar'
 
 RUN_ENV = os.getenv('RUN_ENV', default='development')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = RUN_ENV != 'development'
+DEBUG = RUN_ENV == 'development'
 
 ALLOWED_HOSTS = ['*', ]
 
@@ -189,26 +189,18 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
+# DOMAIN_URL = 'http://127.0.0.1:8000'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/classic/')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'static/upload/')
+# STATIC_URL = '/static/'
+# MEDIA_URL = '/upload/'
+# CKEDITOR_UPLOAD_PATH = 'upload/'
+# CKEDITOR_IMAGE_BACKEND = 'pillow'
+
 DOMAIN_URL = os.getenv('DOMAIN_URL', default='http://127.0.0.1:8000')
 STATIC_ROOT = os.getenv('STATIC_ROOT', default=os.path.join(BASE_DIR, 'static/classic/'))
 MEDIA_ROOT = os.getenv('MEDIA_ROOT', default=os.path.join(BASE_DIR, 'static/upload/'))
 STATIC_URL = os.getenv('STATIC_URL', default='/static/')
 MEDIA_URL = os.getenv('MEDIA_URL', default='/upload/')
-CKEDITOR_UPLOAD_PATH = 'upload/'
+CKEDITOR_UPLOAD_PATH = 'ckeditor/'
 CKEDITOR_IMAGE_BACKEND = 'pillow'
-# if DEBUG:
-#     DOMAIN_URL = 'http://127.0.0.1:8000'
-#     STATIC_ROOT = os.path.join(BASE_DIR, 'static/classic/')
-#     MEDIA_ROOT = os.path.join(BASE_DIR, 'static/upload/')
-#     STATIC_URL = '/static/'
-#     MEDIA_URL = '/upload/'
-#     CKEDITOR_UPLOAD_PATH = 'upload/'
-#     CKEDITOR_IMAGE_BACKEND = 'pillow'
-# else:
-#     DOMAIN_URL = os.getenv('DOMAIN_URL')
-#     STATIC_ROOT = os.path.join(BASE_DIR, 'static/classic/')
-#     MEDIA_ROOT = os.path.join(BASE_DIR, 'static/upload/')
-#     STATIC_URL = '/static/'
-#     MEDIA_URL = '/upload/'
-#     CKEDITOR_UPLOAD_PATH = 'upload/'
-#     CKEDITOR_IMAGE_BACKEND = 'pillow'
