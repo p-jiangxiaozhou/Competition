@@ -48,6 +48,15 @@ SIMPLEUI_ANALYSIS = False
 # js采用离线
 SIMPLEUI_STATIC_OFFLINE = True
 
+DEFAULT_FILE_STORAGE = 'aliyun_oss2_storage.backends.AliyunMediaStorage'
+
+ACCESS_KEY_ID = "LTAI4GJDhgcvBXS4BT91CJbr"
+ACCESS_KEY_SECRET = "TjdDosFCiGTgvhWAVYSKVnav2Xynsi"
+END_POINT = "oss-cn-hangzhou.aliyuncs.com"
+BUCKET_NAME = "pupilary"
+ALIYUN_OSS_CNAME = ""  # 自定义域名，如果不需要可以不填写
+BUCKET_ACL_TYPE = "private"  # private, public-read, public-read-write
+
 # Application definition
 
 INSTALLED_APPS = [

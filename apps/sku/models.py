@@ -7,7 +7,7 @@ class Brand(models.Model):
     name = models.CharField(u'品牌名称', max_length=20, null=False, blank=False, )
     url = models.ImageField(u'品牌图片', max_length=100, upload_to=get_file_path, null=False, blank=False, )
     regdate = models.DateField(u'注册时间', null=False, blank=False, )
-    address = models.CharField(u'经营地址', null=True, blank=True, )
+    address = models.CharField(u'经营地址', max_length=100, null=True, blank=True, )
     is_active = models.BooleanField(u'是否有效', default=True, )
     create_time = models.DateTimeField(u'添加时间', auto_now_add=True, )
     update_time = models.DateTimeField(u'更新时间', auto_now=True, )

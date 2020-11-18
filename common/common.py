@@ -2,6 +2,7 @@ import os
 import uuid
 from datetime import datetime
 import hashlib
+import oss2
 
 
 def get_file_path(instance, filename):
