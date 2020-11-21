@@ -1,3 +1,4 @@
+#-*- coding: utf-8 -*-
 from django.db import models
 from common.common import get_file_path
 from ckeditor_uploader.fields import RichTextUploadingField
