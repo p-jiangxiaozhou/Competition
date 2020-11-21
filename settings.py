@@ -48,14 +48,14 @@ SIMPLEUI_ANALYSIS = False
 # js采用离线
 SIMPLEUI_STATIC_OFFLINE = True
 
-DEFAULT_FILE_STORAGE = 'aliyun_oss2_storage.backends.AliyunMediaStorage'
+# DEFAULT_FILE_STORAGE = 'aliyun_oss2_storage.backends.AliyunMediaStorage'
 
-ACCESS_KEY_ID = "LTAI4GJDhgcvBXS4BT91CJbr"
-ACCESS_KEY_SECRET = "TjdDosFCiGTgvhWAVYSKVnav2Xynsi"
-END_POINT = "oss-cn-hangzhou.aliyuncs.com"
-BUCKET_NAME = "pupilary"
-ALIYUN_OSS_CNAME = ""  # 自定义域名，如果不需要可以不填写
-BUCKET_ACL_TYPE = "private"  # private, public-read, public-read-write
+# ACCESS_KEY_ID = "LTAI4GJDhgcvBXS4BT91CJbr"
+# ACCESS_KEY_SECRET = "TjdDosFCiGTgvhWAVYSKVnav2Xynsi"
+# END_POINT = "oss-cn-hangzhou.aliyuncs.com"
+# BUCKET_NAME = "pupilary"
+# ALIYUN_OSS_CNAME = ""  # 自定义域名，如果不需要可以不填写
+# BUCKET_ACL_TYPE = "public-read"  # private, public-read, public-read-write
 
 # Application definition
 
@@ -73,6 +73,7 @@ INSTALLED_APPS = [
     'filter',
     'apps.user',
     'apps.sku',
+    'apps.member',
 ]
 
 MIDDLEWARE = [
@@ -210,6 +211,6 @@ DOMAIN_URL = os.getenv('DOMAIN_URL', default='http://127.0.0.1:8000')
 STATIC_ROOT = os.getenv('STATIC_ROOT', default=os.path.join(BASE_DIR, 'static/classic/'))
 MEDIA_ROOT = os.getenv('MEDIA_ROOT', default=os.path.join(BASE_DIR, 'static/upload/'))
 STATIC_URL = os.getenv('STATIC_URL', default='/static/')
-MEDIA_URL = os.getenv('MEDIA_URL', default='/upload/')
+MEDIA_URL = os.getenv('MEDIA_URL', default='/')
 CKEDITOR_UPLOAD_PATH = 'ckeditor/'
 CKEDITOR_IMAGE_BACKEND = 'pillow'

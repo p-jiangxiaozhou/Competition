@@ -16,7 +16,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_per_page = 20
     model = Category
     search_fields = ['name']
-    list_display = ('name', 'parent', 'is_active', 'create_time', 'update_time',)
+    list_display = ('name', 'sub_title', 'parent', 'is_active', 'create_time', 'update_time',)
     exclude = ['create_time', 'update_time', ]
 
 

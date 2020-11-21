@@ -22,6 +22,7 @@ class Brand(models.Model):
 
 class Category(models.Model):
     name = models.CharField(u'分类名称', max_length=20, null=False, )
+    sub_title = models.CharField(u'小标题', max_length=30, null=True, blank=True, )
     parent = models.ForeignKey('self', verbose_name='上级分类', null=True, blank=True, default=0,
                                on_delete=models.CASCADE, )
     is_active = models.BooleanField(u'是否有效', default=True, )
