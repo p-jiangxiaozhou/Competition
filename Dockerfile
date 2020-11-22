@@ -1,12 +1,17 @@
-FROM python:3.6-alpine
+FROM python:3.7.9
 
 MAINTAINER takesi "jiangxiaozhou@pupilary.cn"
 
-ENV PYTHONUNBUFFERED 1
+RUN mkdir -p /home/www/Competition
 
-RUN apk update \
-    && apk add jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev
+RUN apt-get install -y git
 
-WORKDIR /apnacos-standalonep
+ADD . /home/www/Competition
 
-RUN pip install pipenv -i https://pypi.douban.com/simple
+WORKDIR /home/www/Competition
+
+RUN pip install -r requirements.txt && pip install uwsgi
+
+CMD ["supervisord", "-c", "/home/www/Competition/supervisord.conf"]
+
+
