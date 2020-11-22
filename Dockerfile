@@ -7,6 +7,6 @@ ENV PYTHONUNBUFFERED 1
 RUN apk update \
     && apk add jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev
 
-WORKDIR /app
+WORKDIR /apnacos-standalonep
 
 RUN pip install pipenv -i https://pypi.douban.com/simple

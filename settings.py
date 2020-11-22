@@ -1,4 +1,4 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Django settings for Competition project.
 
@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 import os
+import environ
 from pathlib import Path
 import pymysql
 
@@ -26,7 +27,25 @@ SECRET_KEY = 'l-_e!(dn76f$16i_&(*(j6#dl7e6)fmyt+^(p(jv233mzh3%ar'
 
 RUN_ENV = os.getenv('RUN_ENV', default='development')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = RUN_ENV == 'development'
+env = environ.Env(
+    DEBUG=(bool, True),
+    DEFAULT_NAME=(str, 'competition'),
+    DEFAULT_USER=(str, 'root'),
+    DEFAULT_PASSWORD=(str, '123456'),
+    DEFAULT_HOST=(str, '127.0.0.1'),
+    SLAVE_NAME=(str, 'ms_micro'),
+    SLAVE_USER=(str, 'root'),
+    SLAVE_PASSWORD=(str, '123456'),
+    SLAVE_HOST=(str, '127.0.0.1'),
+    DOMAIN_URL=(str, 'http://127.0.0.1:8000'),
+    STATIC_ROOT=(str, os.path.join(BASE_DIR, 'static/classic/')),
+    MEDIA_ROOT=(str, os.path.join(BASE_DIR, 'static/upload/')),
+    STATIC_URL=(str, '/static/'),
+    MEDIA_URL=(str, '/')
+)
+environ.Env.read_env()
+
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['*', ]
 
@@ -113,14 +132,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'wsgi.application'
 
-DEFAULT_NAME = os.getenv('DEFAULT_NAME', default='competition')
-DEFAULT_USER = os.getenv('DEFAULT_USER', default='root')
-DEFAULT_PASSWORD = os.getenv('DEFAULT_PASSWORD', default='123456')
-DEFAULT_HOST = os.getenv('DEFAULT_HOST', default='127.0.0.1')
-SLAVE_NAME = os.getenv('SLAVE_NAME', default='ms_micro')
-SLAVE_USER = os.getenv('SLAVE_USER', default='root')
-SLAVE_PASSWORD = os.getenv('SLAVE_PASSWORD', default='123456')
-SLAVE_HOST = os.getenv('SLAVE_HOST', default='127.0.0.1')
+DEFAULT_NAME = env('DEFAULT_NAME')
+DEFAULT_USER = env('DEFAULT_USER')
+
+DEFAULT_PASSWORD = env('DEFAULT_PASSWORD')
+DEFAULT_HOST = env('DEFAULT_HOST')
+SLAVE_NAME = env('SLAVE_NAME')
+SLAVE_USER = env('SLAVE_USER')
+SLAVE_PASSWORD = env('SLAVE_PASSWORD')
+SLAVE_HOST = env('SLAVE_HOST')
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -208,10 +228,10 @@ USE_TZ = True
 # CKEDITOR_UPLOAD_PATH = 'upload/'
 # CKEDITOR_IMAGE_BACKEND = 'pillow'
 
-DOMAIN_URL = os.getenv('DOMAIN_URL', default='http://127.0.0.1:8000')
-STATIC_ROOT = os.getenv('STATIC_ROOT', default=os.path.join(BASE_DIR, 'static/classic/'))
-MEDIA_ROOT = os.getenv('MEDIA_ROOT', default=os.path.join(BASE_DIR, 'static/upload/'))
-STATIC_URL = os.getenv('STATIC_URL', default='/static/')
-MEDIA_URL = os.getenv('MEDIA_URL', default='/')
+DOMAIN_URL = env('DOMAIN_URL')
+STATIC_ROOT = env('STATIC_ROOT')
+MEDIA_ROOT = env('MEDIA_ROOT')
+STATIC_URL = env('STATIC_URL')
+MEDIA_URL = env('MEDIA_URL')
 CKEDITOR_UPLOAD_PATH = 'ckeditor/'
 CKEDITOR_IMAGE_BACKEND = 'pillow'
