@@ -16,8 +16,7 @@ class Order(models.Model):
     )
     no = models.CharField(u'订单编号', max_length=20, null=False, unique=True, )
     price = models.DecimalField(u'价格', max_digits=10, decimal_places=2, null=False, )
-    state = models.SmallIntegerField(u'订单操作', choices=state_choices, null=False, default=0, )
-    is_active = models.BooleanField(u'是否有效', default=False, )
+    state = models.SmallIntegerField(u'订单状态', choices=state_choices, null=False, default=0, )
     create_time = models.DateTimeField(u'添加时间', auto_now_add=True, )
     update_time = models.DateTimeField(u'更新时间', auto_now=True, )
 

@@ -12,6 +12,8 @@ WORKDIR /home/www/Competition
 
 RUN pip install -r requirements.txt && pip install uwsgi
 
+RUN python manage.py makemigrations && python manage.py migrate
+
 EXPOSE 8000
 
 CMD ["uwsgi", "--ini", "/home/www/Competition/uwsgi.ini"]

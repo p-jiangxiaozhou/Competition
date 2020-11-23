@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.utils.safestring import mark_safe
 from common.common import get_file_path
 from ckeditor_uploader.fields import RichTextUploadingField
 
@@ -12,6 +13,12 @@ class Brand(models.Model):
     is_active = models.BooleanField(u'是否有效', default=True, )
     create_time = models.DateTimeField(u'添加时间', auto_now_add=True, )
     update_time = models.DateTimeField(u'更新时间', auto_now=True, )
+
+    def url_tag(self):
+        return mark_safe('<img src="%s" width="200px" height="100px" />' % self.url.url)
+
+    url_tag.short_description = u'品牌图片'
+    url_tag.allow_tags = True
 
     class Meta:
         db_table = 'mdc_brand'
@@ -52,7 +59,7 @@ class Goods(models.Model):
     update_time = models.DateTimeField(u'更新时间', auto_now=True, )
 
     def img_tag(self):
-        return u'<img src="%s" width="200px" />' % self.img.url
+        return mark_safe('<img src="%s" width="70px" height="70px" />' % self.img.url)
 
     img_tag.short_description = u'封面图'
     img_tag.allow_tags = True
