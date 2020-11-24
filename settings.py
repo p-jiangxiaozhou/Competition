@@ -61,7 +61,7 @@ PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.UnsaltedMD5PasswordHasher',
 )
 
-APP_LABELS = ['member', 'sku', ]
+APP_LABELS = ['member', 'sku', 'cinema', ]
 
 # 不让simpleui收集相关信息
 SIMPLEUI_ANALYSIS = False
@@ -94,6 +94,7 @@ INSTALLED_APPS = [
     'apps.user',
     'apps.sku',
     'apps.member',
+    'apps.cinema',
 ]
 
 MIDDLEWARE = [
